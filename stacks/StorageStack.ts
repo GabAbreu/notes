@@ -1,6 +1,7 @@
-import { StackContext, Table } from "sst/constructs";
+import { Bucket, StackContext, Table } from "sst/constructs";
 
 export function StorageStack({ stack }: StackContext){
+    const bucket = new Bucket(stack, "uploads")
     const table = new Table(stack, "Notes", {
         fields: {
             userId: "string",
@@ -10,6 +11,7 @@ export function StorageStack({ stack }: StackContext){
     })
 
     return {
+        bucket,
         table
     }
 }
